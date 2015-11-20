@@ -47,12 +47,15 @@ public class MainActivity extends Activity implements SpinnerButton.OnFragmentIn
     @Override
     public void onFragmentInteraction(String number) {
         Grid grid = new Grid();
+        Bundle bundle = new Bundle();
+        bundle.putString("number", number);
+        grid.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.SpinnerFragment, grid, "Grid");
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        Grid gv =  (Grid) fragmentManager.findFragmentById(R.id.SpinnerFragment);
-        gv.changeNumber(number);
+
     }
 
 

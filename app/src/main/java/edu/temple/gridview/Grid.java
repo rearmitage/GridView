@@ -29,7 +29,8 @@ public class Grid extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        gridView = (GridView) getActivity().findViewById(R.id.gridView);
+        changeNumber(getArguments().getString("number"));
     }
 
     public void changeNumber(String number)
@@ -72,7 +73,6 @@ public class Grid extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        gridView = (GridView) getActivity().findViewById(R.id.gridView);
         return inflater.inflate(R.layout.fragment_grid, container, false);
     }
 
