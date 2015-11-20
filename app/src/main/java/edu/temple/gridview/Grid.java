@@ -12,8 +12,6 @@ import android.widget.TextView;
 public class Grid extends Fragment {
 
     GridView gridView;
-    TextView text;
-    String[] numbers = {"Two","Four","Six","Eight"};
     int x;
 
     // TODO: Rename and change types and number of parameters

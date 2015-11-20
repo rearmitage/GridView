@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:name="edu.temple.gridview.SpinnerButton"
-        android:id="@+id/fragment"
+        android:id="@+id/SpinnerFragment"
         android:layout_alignParentTop="true"
         tools:layout="@layout/fragment_spinner"
         android:layout_alignParentStart="true"

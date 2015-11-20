@@ -14,6 +14,11 @@ public class MainActivity extends Activity implements SpinnerButton.OnFragmentIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.SpinnerFragment, new SpinnerButton());
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -41,17 +46,23 @@ public class MainActivity extends Activity implements SpinnerButton.OnFragmentIn
 
     @Override
     public void onFragmentInteraction(String number) {
-        FragmentManager manager = getFragmentManager();
-        doTransition();
-        Grid gv = (Grid) manager.findFragmentById(R.id.gridView);
-        gv.changeNumber(number);
+        //doTransition();
+       // FragmentManager manager = getFragmentManager();
+        //Grid gv = (Grid) manager.findFragmentById(R.id.SpinnerFragment);
+        //gv.changeNumber(number);
+        Grid grid = new Grid();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.SpinnerFragment, grid, "Grid");
+        fragmentTransaction.commit();
+        grid.changeNumber(number);
     }
 
     private void doTransition(){
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment, new Grid())
-                .addToBackStack(null)
-                .commit();
+        Grid grid = new Grid();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.SpinnerFragment, grid, "Grid");
+        fragmentTransaction.commit();
     }
 }
