@@ -10,12 +10,14 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity implements SpinnerButton.OnFragmentInteractionListener{
 
+    FragmentManager fragmentManager = getFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getFragmentManager();
+
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.SpinnerFragment, new SpinnerButton());
         fragmentTransaction.commit();
@@ -50,7 +52,6 @@ public class MainActivity extends Activity implements SpinnerButton.OnFragmentIn
         Bundle bundle = new Bundle();
         bundle.putString("number", number);
         grid.setArguments(bundle);
-        FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.SpinnerFragment, grid, "Grid");
         fragmentTransaction.addToBackStack(null);
@@ -58,5 +59,13 @@ public class MainActivity extends Activity implements SpinnerButton.OnFragmentIn
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if(fragmentManager.getBackStackEntryCount() != 0) {
+            fragmentManager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 }
