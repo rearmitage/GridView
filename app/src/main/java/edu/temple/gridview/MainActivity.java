@@ -42,7 +42,16 @@ public class MainActivity extends Activity implements SpinnerButton.OnFragmentIn
     @Override
     public void onFragmentInteraction(String number) {
         FragmentManager manager = getFragmentManager();
-        Grid gv = (Grid) manager.findFragmentById(R.id.fragment2);
+        doTransition();
+        Grid gv = (Grid) manager.findFragmentById(R.id.gridView);
         gv.changeNumber(number);
+    }
+
+    private void doTransition(){
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment, new Grid())
+                .addToBackStack(null)
+                .commit();
     }
 }
